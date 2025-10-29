@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CampFire Chat</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  
+  
+
+  <div class="chat-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+          <div class="sidebar-header">
+              <div class="user-info">
+                  <div class="avatar" id="currentUserAvatar">?</div>
+                  <div>
+                      <div class="user-name" id="currentUserName">Guest</div>
+                      <div class="user-status">Online</div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="online-users-title">Around the Fire (<span id="onlineCount">0</span>)</div>
+
+          <div class="conversations" id="conversationsList">
+              <div class="empty-state">
+                  <div class="empty-state-icon">🔥</div>
+                  <div class="empty-state-text">No campers yet</div>
+                  <div class="empty-state-subtext">Open another tab to chat with yourself!</div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Main Chat Area -->
+      <div class="chat-main">
+          <div class="chat-header">
+              <div class="chat-header-info">
+                  <div class="conversation-avatar" id="activeChatAvatar">💬</div>
+                  <div>
+                      <div class="chat-header-name" id="activeChatName">Select a camper</div>
+                      <div class="chat-header-status" id="activeChatStatus"></div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="messages-container" id="messagesContainer">
+              <div class="empty-state">
+                  <div class="empty-state-icon">🌙</div>
+                  <div class="empty-state-text">Gather around</div>
+                  <div class="empty-state-subtext">Select a camper to start chatting</div>
+              </div>
+          </div>
+
+          <div class="message-input-container">
+              <div class="message-input-wrapper">
+                  <textarea 
+                      class="message-input" 
+                      id="messageInput" 
+                      placeholder="Share your story..."
+                      rows="1"
+                      disabled></textarea>
+                  <button class="send-btn" id="sendBtn" disabled>Send</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

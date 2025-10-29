@@ -1,13 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="app.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cozy Fire Pit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
 </head>
-<body>klk
-    ]
-</body>
+<body>
+    <div>
+        <h1> Over the fire</h1>
+    </div>
+    <!-- sign in -->
+    <div class="login-container">
+    <div class="login-box">
+      <h2>Welcome back, Camper 🔥</h2>
+      <p class="subtitle">We’re so excited to see you again!</p>
 
+      <form>
+        <div class="input-group">
+          <label for="usernameInput">CAMPER NAME <span>*</span></label>
+          <input type="text" id="usernameInput" placeholder="Your name" maxlength="20" />
+        </div>
+
+        <div class="input-group">
+          <label for="passwordInput">PASSWORD <span>*</span></label>
+          <input type="password" id="passwordInput" placeholder="Password" maxlength="20" />
+        </div>
+
+        <a href="#" class="forgot-password">Forgot your password?</a>
+
+        <a href="main.html">
+          <button type="button" id="signInBtn">Sign In</button>
+        </a>
+      </form>
+
+      <p class="register-text">Need an account? <a href="#">Register</a></p>
+    </div>
+
+    <div class="qr-box">
+      <div class="qr-placeholder">
+        <div class="qr-icon">🔥</div>
+      </div>
+      <h3>Log in with QR Code</h3>
+      <p>Scan this with the <strong>CampFire mobile app</strong> to log in instantly.</p>
+    </div>
+  </div>
+
+
+    <div class="scene">
+        <!-- Stars -->
+        <div class="stars" id="stars"></div>
+
+        <!-- Trees -->
+        <div class="trees">
+            <div class="tree tree-left"></div>
+            <div class="tree tree-right"></div>
+        </div>
+
+        <!-- Ground -->
+        <div class="ground"></div>
+
+        <!-- Fire pit -->
+        <div class="firepit-container">
+            <div class="glow"></div>
+            
+            <div class="fire">
+                <div class="flame"></div>
+                <div class="flame"></div>
+                <div class="flame"></div>
+                <div class="spark"></div>
+                <div class="spark"></div>
+                <div class="spark"></div>
+                <div class="spark"></div>
+            </div>
+
+            <div class="logs">
+                <div class="log"></div>
+                <div class="log"></div>
+                <div class="log"></div>
+            </div>
+
+            <div class="stones">
+                <div class="stone"></div>
+                <div class="stone"></div>
+                <div class="stone"></div>
+                <div class="stone"></div>
+                <div class="stone"></div>
+                <div class="stone"></div>
+            </div>
+            <div class = "mountain "> 
+                <div class="mountain-left"></div>
+                <div class="mountain-right"></div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>
