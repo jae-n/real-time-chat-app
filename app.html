@@ -11,44 +11,42 @@
 </head>
 <body>
     <div>
-        <h1> Over the fire</h1>
+        <h1>Over the fire</h1>
     </div>
+    
     <!-- sign in -->
     <div class="login-container">
-    <div class="login-box">
-      <h2>Welcome back, Camper 🔥</h2>
-      <p class="subtitle">We’re so excited to see you again!</p>
+        <div class="login-box">
+            <h2>Welcome back, Camper 🔥</h2>
+            <p class="subtitle">We're so excited to see you again!</p>
 
-      <form>
-        <div class="input-group">
-          <label for="usernameInput">CAMPER NAME <span>*</span></label>
-          <input type="text" id="usernameInput" placeholder="Your name" maxlength="20" />
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="usernameInput">CAMPER NAME <span>*</span></label>
+                    <input type="text" id="usernameInput" placeholder="Your name" maxlength="20" required />
+                </div>
+
+                <div class="input-group">
+                    <label for="passwordInput">PASSWORD <span>*</span></label>
+                    <input type="password" id="passwordInput" placeholder="Password" maxlength="20" required />
+                </div>
+
+                <a href="#" class="forgot-password">Forgot your password?</a>
+
+                <button type="button" id="signInBtn">Sign In</button>
+            </form>
+
+            <p class="register-text">Need an account? <a href="#">Register</a></p>
         </div>
 
-        <div class="input-group">
-          <label for="passwordInput">PASSWORD <span>*</span></label>
-          <input type="password" id="passwordInput" placeholder="Password" maxlength="20" />
+        <div class="qr-box">
+            <div class="qr-placeholder">
+                <div class="qr-icon">🔥</div>
+            </div>
+            <h3>Log in with QR Code</h3>
+            <p>Scan this with the <strong>CampFire mobile app</strong> to log in instantly.</p>
         </div>
-
-        <a href="#" class="forgot-password">Forgot your password?</a>
-
-        <a href="main.html">
-          <button type="button" id="signInBtn">Sign In</button>
-        </a>
-      </form>
-
-      <p class="register-text">Need an account? <a href="#">Register</a></p>
     </div>
-
-    <div class="qr-box">
-      <div class="qr-placeholder">
-        <div class="qr-icon">🔥</div>
-      </div>
-      <h3>Log in with QR Code</h3>
-      <p>Scan this with the <strong>CampFire mobile app</strong> to log in instantly.</p>
-    </div>
-  </div>
-
 
     <div class="scene">
         <!-- Stars -->
@@ -91,13 +89,12 @@
                 <div class="stone"></div>
                 <div class="stone"></div>
             </div>
-            <div class = "mountain "> 
+            
+            <div class="mountain"> 
                 <div class="mountain-left"></div>
                 <div class="mountain-right"></div>
             </div>
         </div>
-
-        
     </div>
 
     <script src="script.js"></script>
