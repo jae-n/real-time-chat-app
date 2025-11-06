@@ -25,7 +25,7 @@ if (localStorage.getItem('username')) {
 // --- Sign in button click ---
 signInBtn.addEventListener('click', (e) => {
   e.preventDefault();
-
+// Get input values
   const username = usernameInput.value.trim();
   const password = passwordInput.value.trim();
 
