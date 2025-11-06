@@ -12,48 +12,63 @@ for (let i = 0; i < 100; i++) {
 }
 
 
-//login and save username to localStorage
+// --- Select elements ---
 const signInBtn = document.getElementById('signInBtn');
-  const usernameInput = document.getElementById('usernameInput');
-  const passwordInput = document.getElementById('passwordInput');
+const usernameInput = document.getElementById('usernameInput');
+const passwordInput = document.getElementById('passwordInput');
 
-  if (signInBtn && usernameInput) {
-    signInBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      const username = usernameInput.value.trim();
-      const password = passwordInput.value.trim();
+// --- Redirect if already logged in ---
+if (localStorage.getItem('username')) {
+  window.location.href = 'main.html';
+}
 
-      // Validate inputs
-      if (!username) {
-        alert('Please enter your camper name!');
-        return;
-      }
+// --- Sign in button click ---
+signInBtn.addEventListener('click', (e) => {
+  e.preventDefault();
 
-      if (!password) {
-        alert('Please enter your password!');
-        return;
-      }
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value.trim();
 
-      // Save username to localStorage
-      localStorage.setItem('username', username);
-      
-      // Redirect to chat
-      window.location.href = 'main.html';
-    });
-
-    // Allow Enter key to submit
-    usernameInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        signInBtn.click();
-      }
-    });
-
-    passwordInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        signInBtn.click();
-      }
-    });
+  if (!username) {
+    alert('Please enter your camper name!');
+    return;
   }
+
+  if (!password) {
+    alert('Please enter your password!');
+    return;
+  }
+
+  // Get users array from localStorage or create empty array
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+
+  // Check if username exists
+  const user = users.find(u => u.username === username);
+
+  if (user) {
+    // Username exists → check password
+    if (user.password === password) {
+      localStorage.setItem('username', username);
+      window.location.href = 'main.html';
+    } else {
+      alert('Incorrect password. Please try again.');
+    }
+  } else {
+    // Username doesn’t exist → create new user
+    users.push({ username, password });
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('username', username);
+    alert('New account created!');
+    window.location.href = 'main.html';
+  }
+});
+
+// --- Press Enter to sign in ---
+[usernameInput, passwordInput].forEach(input => {
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      signInBtn.click();
+    }
+  });
+});
