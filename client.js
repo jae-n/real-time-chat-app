@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Socket connection
 socket.on('connect', () => {
-  console.log('🔥 Connected to campfire!');
+  console.log(' Connected to campfire!');
   socket.emit('user-joined', username);
 });
 
@@ -86,7 +86,7 @@ socket.on('chat message', (data) => {
 socket.on('user-joined', (data) => {
   onlineUsers.set(data.socketId, data.username);
   updateOnlineUsers();
-  displaySystemMessage(`${data.username} joined the campfire 🔥`);
+  displaySystemMessage(`${data.username} joined the campfire `);
 });
 
 // Listen for user left
