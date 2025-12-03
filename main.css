@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-/* Nighttime firelight background */
+/* night time firelight background */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: radial-gradient(circle at bottom, #0a0f1f 0%, #1a1f2f 50%, #000 100%);
@@ -18,13 +18,13 @@ body {
 
 
 
-/* Layout */
+/* layout */
 .chat-container {
   display: flex;
   height: 100vh;
 }
 
-/* Sidebar */
+/* sidebar */
 .sidebar {
   width: 320px;
   background: #121826;
@@ -210,7 +210,7 @@ body {
   box-shadow: 0 0 20px rgba(255, 140, 0, 0.3);
 }
 
-/* Scrollbar */
+/* scroll bar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -219,7 +219,7 @@ body {
   border-radius: 3px;
 }
 
-/* Chat Section */
+/* chat Section */
 
 .chat-section {
   position: fixed;
@@ -335,7 +335,7 @@ body {
   transform: scale(0.95);
 }
 
-/* Scrollbar styling */
+/* scroll  style */
 #chatContainer::-webkit-scrollbar {
   width: 8px;
 }

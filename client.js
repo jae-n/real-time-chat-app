@@ -1,16 +1,17 @@
-// client.js - Complete chat functionality for main.html
+// client.js for  main.html
+//main page
 
 const socket = io('http://localhost:3000');
-
+// store  online users with  socket ID
 let username = localStorage.getItem('username') || 'Guest';
-let onlineUsers = new Map(); // Store online users with their socket IDs
+let onlineUsers = new Map(); 
 
-// DOM Elements
+// get dom element
 let messagesContainer, messageInput, sendBtn, conversationsList, onlineCount;
 let currentUserName, currentUserAvatar;
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Get all DOM elements
+  // get the doc element 
   messagesContainer = document.getElementById('messagesContainer');
   messageInput = document.getElementById('messageInput');
   sendBtn = document.getElementById('sendBtn');
@@ -19,17 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
   currentUserName = document.getElementById('currentUserName');
   currentUserAvatar = document.getElementById('currentUserAvatar');
 
-  // Set current user info
+  // set  user info
   if (currentUserName) currentUserName.textContent = username;
   if (currentUserAvatar) {
     currentUserAvatar.textContent = username.charAt(0).toUpperCase();
   }
 
-  // Enable input and button for group chat
+  // input for chat enabled
   if (messageInput) messageInput.disabled = false;
   if (sendBtn) sendBtn.disabled = false;
 
-  // Set up group chat header
+  // group chat info
   const activeChatName = document.getElementById('activeChatName');
   const activeChatAvatar = document.getElementById('activeChatAvatar');
   const activeChatStatus = document.getElementById('activeChatStatus');
@@ -38,19 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (activeChatAvatar) activeChatAvatar.textContent = '🔥';
   if (activeChatStatus) activeChatStatus.textContent = 'Everyone is here';
 
-  // Clear empty state
+  // empty state for messages
   if (messagesContainer) {
     messagesContainer.innerHTML = '';
   }
 
-  // Send message on button click
+  // send message button
   if (sendBtn) {
     sendBtn.addEventListener('click', () => {
       sendMessage();
     });
   }
 
-  // Send message on Enter (Shift+Enter for new line)
+  //shift for new line, enter to send
   if (messageInput) {
     messageInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Auto-resize textarea
+    // auto resize text
     messageInput.addEventListener('input', () => {
       messageInput.style.height = 'auto';
       messageInput.style.height = messageInput.scrollHeight + 'px';
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Socket connection
+// socket connection
 socket.on('connect', () => {
   console.log(' Connected to campfire!');
   socket.emit('user-joined', username);
@@ -77,26 +78,26 @@ socket.on('disconnect', () => {
   console.log('Disconnected from campfire');
 });
 
-// Listen for chat messages
+// listen  for messages
 socket.on('chat message', (data) => {
   displayMessage(data);
 });
 
-// Listen for user joined
+// listen for user joined
 socket.on('user-joined', (data) => {
   onlineUsers.set(data.socketId, data.username);
   updateOnlineUsers();
   displaySystemMessage(`${data.username} joined the campfire `);
 });
 
-// Listen for user left
+// listen for user left
 socket.on('user-left', (data) => {
   onlineUsers.delete(data.socketId);
   updateOnlineUsers();
   displaySystemMessage(`${data.username} left the campfire`);
 });
 
-// Listen for online users list
+// listen to num of online users
 socket.on('online-users', (users) => {
   onlineUsers.clear();
   users.forEach(user => {
@@ -105,7 +106,7 @@ socket.on('online-users', (users) => {
   updateOnlineUsers();
 });
 
-// Send message function
+// send message function
 function sendMessage() {
   const message = messageInput.value.trim();
   
@@ -121,7 +122,7 @@ function sendMessage() {
   }
 }
 
-// Display regular message
+// display regular message
 function displayMessage(data) {
   if (!messagesContainer) return;
 
@@ -151,7 +152,7 @@ function displayMessage(data) {
 }
 
 
-// Display system message
+// display system message
 function displaySystemMessage(text) {
   if (!messagesContainer) return;
 
@@ -163,14 +164,14 @@ function displaySystemMessage(text) {
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-// Update online users list
+// update num ofonline users 
 function updateOnlineUsers() {
   if (!conversationsList || !onlineCount) return;
 
-  // Update count
+  //  count update
   onlineCount.textContent = onlineUsers.size;
 
-  // Clear list
+  // clear list
   conversationsList.innerHTML = '';
 
   if (onlineUsers.size === 0) {
@@ -184,7 +185,7 @@ function updateOnlineUsers() {
     return;
   }
 
-  // Add each user
+  // add each user
   onlineUsers.forEach((user, socketId) => {
     const userDiv = document.createElement('div');
     userDiv.className = `conversation ${user === username ? 'active' : ''}`;
@@ -198,7 +199,7 @@ function updateOnlineUsers() {
     conversationsList.appendChild(userDiv);
   });
 }
-
+//helper function
 // Escape HTML to prevent XSS
 function escapeHtml(text) {
   const div = document.createElement('div');
@@ -206,7 +207,7 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-// Send notification when user leaves
+// send nofication on user leaving
 window.addEventListener('beforeunload', () => {
   socket.emit('user-leaving', username);
 });

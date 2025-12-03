@@ -1,4 +1,4 @@
-// server.js - Enhanced with user tracking
+// server.js 
 
 const express = require('express');
 const http = require('http');
@@ -8,32 +8,32 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Serve static files from current directory
+// static file current directory
 app.use(express.static(__dirname));
 
-// Serve main.html as default
+// main route defult
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/app.html');
 });
 
-// Track online users: Map<socketId, username>
+// track online users
 const onlineUsers = new Map();
 
 io.on('connection', (socket) => {
     console.log(`New connection: ${socket.id}`);
 
-    // Handle user joined
+    // user joined
     socket.on('user-joined', (username) => {
         onlineUsers.set(socket.id, username);
         console.log(`${username} joined (${onlineUsers.size} online)`);
 
-        // Notify everyone about new user
+        // nofity new user 
         io.emit('user-joined', {
             socketId: socket.id,
             username: username
         });
 
-        // Send current online users to the new user
+        // current num of online users
         const users = Array.from(onlineUsers.entries()).map(([socketId, username]) => ({
             socketId,
             username
@@ -41,11 +41,11 @@ io.on('connection', (socket) => {
         socket.emit('online-users', users);
     });
 
-    // Handle chat messages
+    // chat message
     socket.on('chat message', (data) => {
         console.log(`${data.user}: ${data.message}`);
         
-        // Broadcast to all clients
+        // all users receive message
         io.emit('chat message', {
             user: data.user,
             message: data.message,
@@ -53,12 +53,12 @@ io.on('connection', (socket) => {
         });
     });
 
-    // Handle user leaving
+    // user disconnecting notify
     socket.on('user-leaving', (username) => {
         handleUserDisconnect(socket.id);
     });
 
-    // Handle disconnect
+    // user disconnected
     socket.on('disconnect', () => {
         handleUserDisconnect(socket.id);
     });
@@ -71,7 +71,7 @@ function handleUserDisconnect(socketId) {
         onlineUsers.delete(socketId);
         console.log(`${username} left (${onlineUsers.size} online)`);
         
-        // Notify everyone
+        // notify user left
         io.emit('user-left', {
             socketId: socketId,
             username: username

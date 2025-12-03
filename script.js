@@ -1,4 +1,5 @@
-// Generate random stars
+// generate  stars
+//background stars
 const starsContainer = document.getElementById('stars');
 
 for (let i = 0; i < 100; i++) {
@@ -12,20 +13,22 @@ for (let i = 0; i < 100; i++) {
 }
 
 
-// --- Select elements ---
+//get doc elements
 const signInBtn = document.getElementById('signInBtn');
 const usernameInput = document.getElementById('usernameInput');
 const passwordInput = document.getElementById('passwordInput');
+// note better authentication needed for production
+//jwt 
 
-// --- Redirect if already logged in ---
+// login check
 if (localStorage.getItem('username')) {
   window.location.href = 'main.html';
 }
 
-// --- Sign in button click ---
+//sign in button
 signInBtn.addEventListener('click', (e) => {
   e.preventDefault();
-// Get input values
+// input values
   const username = usernameInput.value.trim();
   const password = passwordInput.value.trim();
 
@@ -39,14 +42,14 @@ signInBtn.addEventListener('click', (e) => {
     return;
   }
 
-  // Get users array from localStorage or create empty array
+  // user data from local storage
   let users = JSON.parse(localStorage.getItem('users')) || [];
 
-  // Check if username exists
+  // check if username exists
   const user = users.find(u => u.username === username);
 
   if (user) {
-    // Username exists → check password
+    // user name exist then password check
     if (user.password === password) {
       localStorage.setItem('username', username);
       window.location.href = 'main.html';
@@ -54,7 +57,7 @@ signInBtn.addEventListener('click', (e) => {
       alert('Incorrect password. Please try again.');
     }
   } else {
-    // Username doesn’t exist → create new user
+    // username not found, create new account
     users.push({ username, password });
     localStorage.setItem('users', JSON.stringify(users));
     localStorage.setItem('username', username);
@@ -63,7 +66,7 @@ signInBtn.addEventListener('click', (e) => {
   }
 });
 
-// --- Press Enter to sign in ---
+// sign in
 [usernameInput, passwordInput].forEach(input => {
   input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
