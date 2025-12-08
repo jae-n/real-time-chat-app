@@ -1,6 +1,5 @@
 # Campfire Chat — Run Instructions
 
-This README gives concise steps to run the application locally and troubleshoot common issues.
 
 Prerequisites
 - Node.js (v14+ recommended).
@@ -10,7 +9,7 @@ Quick start (Windows PowerShell)
 1. Open PowerShell and change to the project directory:
 
 ```powershell
-cd 'C:\Users\james\react'
+cd 'C:\Path\To\react'
 ```
 
 2. Install dependencies (only required once):
