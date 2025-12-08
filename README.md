@@ -125,16 +125,3 @@ node server.js
 - Add authentication (even a simple username/password or OAuth) to prevent impersonation.
 - Add a `package.json` `start` script: `"start": "node server.js"` for convenience.
 
-## Notes for grading / presentation
-- Explain transport: WebSocket (TCP) and fallback to HTTP long-polling if necessary.
-- Demonstrate presence, message broadcast, and XSS protection on the client.
-- Discuss security trade-offs and mitigations (authentication, validation, TLS).
-
----
-
-If you want, I can:
-- add a `package.json` `start` script and install dependencies,
-- insert basic server-side validation into `server.js`, or
-- prepare a one-page presentation slide or speaker notes.
-
-Happy to make any of those changes — tell me which one to do next.
